@@ -101,6 +101,7 @@ public class AdminController extends BaseController{
 	 * @param request
 	 * @return
 	 */
+	@ApiOperation(value="用户登陆验证",notes="用户登陆验证")
 	@PostMapping("/login")
 	@ResponseBody
 	public AjaxResult login(TsysUser user,String code,RedirectAttributes redirectAttributes,boolean rememberMe,HttpServletRequest request) {
@@ -150,9 +151,15 @@ public class AdminController extends BaseController{
 			            ae.printStackTrace();
 			            return AjaxResult.error(500,"用户名或密码不正确");
 			        }
+			 }else {
+				 if(StringUtils.isNotNull(ShiroUtils.getUser())) {
+		         	 //跳转到 get请求的登陆方法
+		    		 //view.setViewName("redirect:/"+prefix+"/index");
+		     		 return  AjaxResult.success();
+		     	 }else {
+		     		 return  AjaxResult.error(500,"未知账户");
+		     	 }
 			 }
-			 return AjaxResult.error(500,"用户名或密码不正确");
-			 
 		 }else{
 			return AjaxResult.error(500,"验证码不正确!");
 		 }
@@ -163,6 +170,7 @@ public class AdminController extends BaseController{
 	 * 退出登陆
 	 * @return
 	 */
+	@ApiOperation(value="退出登陆",notes="退出登陆")
 	@GetMapping("/Loginout")
 	public String LoginOut(HttpServletRequest request, HttpServletResponse response){
 		//在这里执行退出系统前需要清空的数据
@@ -176,6 +184,7 @@ public class AdminController extends BaseController{
 	
 	
 	/****页面测试****/
+	@ApiOperation(value="404页面",notes="404页面")
 	@GetMapping("Out404")
 	public String Out404(HttpServletRequest request, HttpServletResponse response){
 		
@@ -183,10 +192,13 @@ public class AdminController extends BaseController{
 	}
 	
 	@GetMapping("Out403")
+	@ApiOperation(value="403页面",notes="403页面")
 	public String Out403(HttpServletRequest request, HttpServletResponse response){
 		
         return "redirect:/error/403";
 	}
+	
+	@ApiOperation(value="500页面",notes="500页面")
 	@GetMapping("Out500")
 	public String Out500(HttpServletRequest request, HttpServletResponse response){
 		
@@ -199,6 +211,7 @@ public class AdminController extends BaseController{
 	 * @param response
 	 * @return
 	 */
+	@ApiOperation(value="权限测试跳转页面",notes="权限测试跳转页面")
 	@GetMapping("Outqx")
 	@RequiresPermissions("system:user:asd")
 	public String Outqx(HttpServletRequest request, HttpServletResponse response){

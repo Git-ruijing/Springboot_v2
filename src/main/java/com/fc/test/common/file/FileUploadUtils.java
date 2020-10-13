@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.FileUploadBase.FileSizeLimitExceededExcepti
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
+import com.fc.test.common.conf.FileConfig;
 import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.exception.file.FileNameLengthLimitExceededException;
 import com.fc.test.util.StringUtils;
@@ -18,24 +19,21 @@ import com.fc.test.util.StringUtils;
 public class FileUploadUtils {
 
     private FileUploadUtils(){}
-
+    
     /**
-     * 默认大小 50M
+     * spring.servlet.multipart.maxFileSize
      */
-    public static final long DEFAULT_MAX_SIZE = 50*1024*1024;
-
+    public static  long DEFAULT_MAX_SIZE=Long.valueOf(FileConfig.getMaxFileSize())*1024*1024;
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = V2Config.getProfile();
+    private static String defaultBaseDir = V2Config.getDefaultBaseDir();
     
     /**
      * 是否上传到static
      */
     private static String isstatic=V2Config.getIsstatic();
     
-
-
     /**
      * 默认的文件名最大长度
      */

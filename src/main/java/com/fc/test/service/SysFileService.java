@@ -2,14 +2,12 @@ package com.fc.test.service;
 
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ClassUtils;
 import com.fc.test.common.base.BaseService;
-import com.fc.test.common.conf.V2Config;
-import com.fc.test.common.support.Convert;
+import com.fc.test.common.support.ConvertUtil;
 import com.fc.test.mapper.auto.TsysDatasMapper;
 import com.fc.test.mapper.auto.TsysFileDataMapper;
 import com.fc.test.mapper.auto.TsysFileMapper;
@@ -25,7 +23,6 @@ import com.fc.test.shiro.util.ShiroUtils;
 import com.fc.test.util.SnowflakeIdWorker;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
 import cn.hutool.core.io.FileUtil;
 
 @Service
@@ -70,11 +67,11 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 */
 	@Transactional
 	public int deleteByPrimaryKey(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		//删除本地文件
 		List<TsysDatas> datas=tsysDatasDao.selectByPrimaryKeys(lista);
 		for (TsysDatas tsysDatas : datas) {
-			deletefile(tsysDatas.getFilePath());
+			deletefile(tsysDatas);
 			//删除文件存储表
 			tsysDatasMapper.deleteByPrimaryKey(tsysDatas.getId());
 			
@@ -96,14 +93,14 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	 * @param ids 文件集合 1,2,3
 	 */
 	public int deleteBydataFile(String ids) {
-		List<String> lista=Convert.toListStrArray(ids);
+		List<String> lista=ConvertUtil.toListStrArray(ids);
 		//删除本地文件
 		TsysDatasExample example=new TsysDatasExample();
 		example.createCriteria().andIdIn(lista);
 		List<TsysDatas> datas=tsysDatasMapper.selectByExample(example);
 		
 		for (TsysDatas tsysDatas : datas) {
-			deletefile(tsysDatas.getFilePath());
+			deletefile(tsysDatas);
 			//删除文件存储表
 			tsysDatasMapper.deleteByPrimaryKey(tsysDatas.getId());
 		}
@@ -115,13 +112,12 @@ public class SysFileService implements BaseService<TsysFile, TsysFileExample>{
 	/**
 	 *删除本地文件方法
 	 */
-	public void deletefile(String filePath) {
-		if("Y".equals(V2Config.getIsstatic())) {
-			String url=ClassUtils.getDefaultClassLoader().getResource("").getPath()+filePath;
-			
+	public void deletefile(TsysDatas tsysDatas) {
+		if("Y".equals(tsysDatas.getFileType())) {
+			String url=ClassUtils.getDefaultClassLoader().getResource("").getPath()+tsysDatas.getFileAbsolutePath();
 			FileUtil.del(url);
 		}else {
-			FileUtil.del(filePath);
+			FileUtil.del(tsysDatas.getFileAbsolutePath());
 		}
 		
 		

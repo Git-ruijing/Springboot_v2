@@ -110,7 +110,7 @@ Springboot
 
 ```
 
-###技术选项
+### 技术选项
 
 技术|名称|官网|备注
 ---|---|---|---
@@ -211,24 +211,20 @@ UEditor|百度富文本||
 ![数据库模型](https://images.gitee.com/uploads/images/2019/0701/001953_dd7a387e_123301.png "数据库模型.png")
 
 ### 界面风格
+|![登录界面](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "登录界面.png")     | ![权限界面](https://images.gitee.com/uploads/images/2019/0921/134912_1fcad28d_123301.png "权限列表.png")    |
+| --- | --- |
+|![权限添加](https://images.gitee.com/uploads/images/2019/0701/002939_3514f4b9_123301.png "权限添加.png")     |![修改角色](https://images.gitee.com/uploads/images/2019/0701/003259_7c28607d_123301.png "屏幕截图.png")     |
+|![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "表单构建.png")     |![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")     |
+|![字典表界面](https://images.gitee.com/uploads/images/2019/0921/135710_a09e8233_123301.png "字典表.png")     |![定时器界面](https://images.gitee.com/uploads/images/2019/0921/135755_19c23d8f_123301.png "定时器.png")     |
+![公告界面](https://images.gitee.com/uploads/images/2019/0921/135843_3bc64939_123301.png "公告界面.png")     | ![邮件发送功能](https://images.gitee.com/uploads/images/2019/0701/003722_d73d40a5_123301.png "邮件发送功能.png")    |
+|![首页](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "首页.png")     |![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "swagger2.png")     |
 
-![登录界面](https://images.gitee.com/uploads/images/2019/0617/214247_d40363b4_123301.png "登录界面.png")
-![权限界面](https://images.gitee.com/uploads/images/2019/0921/134912_1fcad28d_123301.png "权限列表.png")
-![权限添加](https://images.gitee.com/uploads/images/2019/0701/002939_3514f4b9_123301.png "权限添加.png")
-![修改角色](https://images.gitee.com/uploads/images/2019/0701/003259_7c28607d_123301.png "屏幕截图.png")
-![表单构建](https://images.gitee.com/uploads/images/2019/0610/014618_33e1edf9_123301.png "表单构建.png")
-![代码生成界面](https://images.gitee.com/uploads/images/2019/0921/135051_b8acc5f6_123301.png "代码生成.png")
-![字典表界面](https://images.gitee.com/uploads/images/2019/0921/135710_a09e8233_123301.png "字典表.png")
-![定时器界面](https://images.gitee.com/uploads/images/2019/0921/135755_19c23d8f_123301.png "定时器.png")
-![公告界面](https://images.gitee.com/uploads/images/2019/0921/135843_3bc64939_123301.png "公告界面.png")
-![邮件发送功能](https://images.gitee.com/uploads/images/2019/0701/003722_d73d40a5_123301.png "邮件发送功能.png")
-![首页](https://images.gitee.com/uploads/images/2019/0609/210649_a934ea28_123301.png "首页.png")
-![swagger2](https://images.gitee.com/uploads/images/2019/0609/210335_d3efad8c_123301.png "swagger2.png")
+
 ### 后台代码注释风格
-![后台代码](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "1.jpg")
-![后台代码](https://images.gitee.com/uploads/images/2018/0909/203112_278db2f4_123301.jpeg "2.jpg")
-![后台代码](https://images.gitee.com/uploads/images/2018/0909/203118_39d8b7cd_123301.jpeg "3.jpg")
-![后台代码](https://images.gitee.com/uploads/images/2018/0909/203125_a362822a_123301.jpeg "4.jpg")
+
+|![后台代码](https://images.gitee.com/uploads/images/2018/0909/203106_52eca8e3_123301.jpeg "1.jpg")   | ![后台代码](https://images.gitee.com/uploads/images/2018/0909/203112_278db2f4_123301.jpeg "2.jpg")  |
+|---|---|
+|![后台代码](https://images.gitee.com/uploads/images/2018/0909/203118_39d8b7cd_123301.jpeg "3.jpg")   |  ![后台代码](https://images.gitee.com/uploads/images/2018/0909/203125_a362822a_123301.jpeg "4.jpg") |
 
 
 ### 前端代码注释风格
@@ -302,6 +298,10 @@ UEditor|百度富文本||
 | Aini-H      |QQ1057718016             | 七牛云上传                                   |                                        |
 
 
+### 借鉴项目列表
+- https://gitee.com/renrenio/renren-generator 人人得代码自动生成，改成自动录入数据库
+- https://gitee.com/y_project/RuoYi-fast 借鉴ry.js
+
 
 ### AgileBPM GVP项目
 专注于解决企业工作流实施难的问题
@@ -311,15 +311,17 @@ https://gitee.com/agile-bpm
 ### Java公众号推荐:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0515/105530_93e6ed60_123301.png "java葵花宝典.png")
 
-### QQ大神群推荐:
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0921/140036_b5ab7bf7_123301.png "我萌的征途是架构狮！群聊二维码.png")
+
 
 ### 精品开源项目推荐
-https://gitee.com/Jmysy/Pear-One-Layui
+- [https://gitee.com/Jmysy/Pear-Admin-Layui](https://gitee.com/Jmysy/Pear-Admin-Layui)
+- [ApiBoot为接口服务而生](https://gitee.com/minbox-projects/api-boot?_from=gitee_search)
 
-### 感谢开源软件列表
+### 使用v2做得系统
 
+![自动化运维](https://images.gitee.com/uploads/images/2020/0311/171512_69596856_123301.png "屏幕截图.png")
 
+![输网络法庭](https://images.gitee.com/uploads/images/2020/0311/171614_f30e1ac2_123301.png "屏幕截图.png")
 
 
 *

@@ -54,10 +54,15 @@
                             <div class="body-nest" id="search_div" style="display: none">
                                 <div class="form_left">
                                     <form role="form" class="form-inline">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail2" class="sr-only">搜索名字</label>
-                                            <input type="text" name="searchText" placeholder="搜索名字"class="form-control">
-                                        </div>
+                                    	#foreach ($column in $beanColumns)
+											
+											<div class="form-group">
+	                                            <label for="exampleInputEmail2" class="sr-only">${column.column_comment}</label>
+	                                            <input type="text" name="${column.beanName}" placeholder="${column.column_comment}"class="form-control">
+	                                        </div>
+	                                        
+										#end
+										
                                         <button onclick="$.table.search(this)" class="btn btn-success" type="button"><i class="fa fa-search"></i>&nbsp;搜索</button>
                                     </form>
                                 </div>
@@ -149,7 +154,7 @@
 	   #end
    #end
 
-<!-- 导出 -->
+/**  请求URL配置   **/
 var dataUrl=window.rootPath+"/${TsysTables.tableModel}Controller/list";
 var removeUrl=window.rootPath+"/${TsysTables.tableModel}Controller/remove";
 var createUrl=window.rootPath+"/${TsysTables.tableModel}Controller/add";
@@ -172,10 +177,6 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
 			{
 			    field: '${column.beanName}',
 			    title: '${column.column_comment}'
-			    //visible: false, //隐藏
-			    //searchable: false,//搜索
-			    //sortable:false,//设置true为允许列可以排序
-			    //order: asc //排序顺序
 			},
 #end
 
@@ -184,6 +185,10 @@ var exportUrl=window.rootPath+"/${TsysTables.tableModel}Controller/export";
 		{
 			    field: 'xxstate',
 			    title: 'xx状态',
+			    visible: false, //隐藏
+			    searchable: false,//搜索
+			   	sortable:false,//设置true为允许列可以排序
+			    order: 'asc', //排序顺序
 		    	formatter: function (value, row, index) {
 			        var actions = [];
 			        if(value==0){

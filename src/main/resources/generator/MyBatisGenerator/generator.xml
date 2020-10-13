@@ -19,7 +19,7 @@
             <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 		</commentGenerator>
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/springbootv2" 
+			connectionURL="jdbc:mysql://localhost:3306/springbootv2?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;useSSL=false" 
 			userId="root"
 			password="root">
 			<!-- 针对mysql数据库 -->
@@ -61,8 +61,12 @@
 		
 		
 		
-		
-		<table tableName='t_sys_permission' domainObjectName='TsysPermission'/>
+		<!-- 		
+		<table domainObjectName="t_sys_datas" tableName="TsysDatas">  
+		    <columnOverride column="address" javaType="java.lang.String" jdbcType="VARCHAR" />  
+		</table>
+		 -->
+		<table tableName='t_sys_datas' domainObjectName='TsysDatas'/>
 
 
 	</context>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.fc.test.common.base.BaseController;
-import com.fc.test.common.conf.V2Config;
 import com.fc.test.common.domain.AjaxResult;
 import com.fc.test.common.file.FileUtils;
 import com.fc.test.model.auto.TsysDatas;
@@ -46,6 +46,7 @@ public class FileController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月20日 下午10:18:32
 	 */
+	@ApiOperation(value = "分页跳转", notes = "分页跳转")
 	@GetMapping("/view")
 	@RequiresPermissions("system:file:view")
     public String view(ModelMap model)
@@ -61,6 +62,7 @@ public class FileController extends BaseController{
 	 * @param searchText 搜索字符
 	 * @return
 	 */
+	@ApiOperation(value = "分页查询", notes = "分页查询")
 	@PostMapping("/list")
 	@RequiresPermissions("system:file:list")
 	@ResponseBody
@@ -76,6 +78,7 @@ public class FileController extends BaseController{
 	 * @author fuce
 	 * @Date 2019年11月20日 下午10:19:03
 	 */
+	@ApiOperation(value = "新增跳转", notes = "新增跳转")
     @GetMapping("/add")
     public String add()
     {
@@ -85,12 +88,14 @@ public class FileController extends BaseController{
     
     
     /**
-     * 上传文件文件上传
+     * 文件上传
      * @param file
      * @return
      * @author fuce
      * @Date 2019年11月20日 下午10:18:49
      */
+	//@Log(title = "文件上传", action = "1")
+	@ApiOperation(value = "文件上传", notes = "文件上传")
     @PostMapping("/upload")
     @ResponseBody
     public AjaxResult updateAvatar(@RequestParam("file") MultipartFile file)
@@ -118,6 +123,8 @@ public class FileController extends BaseController{
      * @param file
      * @return
      */
+	//@Log(title = "文件添加", action = "1")
+	@ApiOperation(value = "文件添加", notes = "文件添加")
 	@PostMapping("/add")
 	@RequiresPermissions("system:file:add")
 	@ResponseBody
@@ -136,6 +143,8 @@ public class FileController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+	//@Log(title = "删除文件", action = "1")
+	@ApiOperation(value = "删除文件", notes = "删除文件")
 	@PostMapping("/remove")
 	@RequiresPermissions("system:file:remove")
 	@ResponseBody
@@ -154,6 +163,8 @@ public class FileController extends BaseController{
 	 * @param ids
 	 * @return
 	 */
+	//@Log(title = "删除本地文件", action = "1")
+	@ApiOperation(value = "删除本地文件", notes = "删除本地文件")
 	@PostMapping("/del_file")
 	@ResponseBody
 	public AjaxResult del_file(String ids){
@@ -171,6 +182,7 @@ public class FileController extends BaseController{
 	 * @param tsysFile
 	 * @return
 	 */
+	@ApiOperation(value = "检查Name唯一", notes = "检查Name唯一")
 	@PostMapping("/checkNameUnique")
 	@ResponseBody
 	public int checkNameUnique(TsysFile tsysFile){
@@ -189,6 +201,7 @@ public class FileController extends BaseController{
 	 * @param mmap
 	 * @return
 	 */
+	@ApiOperation(value = "修改跳转", notes = "修改跳转")
 	@GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") String id, ModelMap mmap)
     {
@@ -199,6 +212,8 @@ public class FileController extends BaseController{
 	/**
      * 修改保存文件
      */
+	//@Log(title = "修改保存文件", action = "1")
+	@ApiOperation(value = "修改保存", notes = "修改保存")
     @RequiresPermissions("system:user:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -210,13 +225,9 @@ public class FileController extends BaseController{
     /**
      * 展示文件跳转页面
      */
+	@ApiOperation(value = "展示文件跳转页面", notes = "展示文件跳转页面")
     @GetMapping("/viewfile/{id}")
     public String viewfile(@PathVariable("id") String id,ModelMap mmap){
-    	if("Y".equals(V2Config.getIsstatic())) {//为静态目录存放的时候
-    		mmap.put("is_static","Y");
-    	}else {//为自定义存放目录的时候
-    		mmap.put("is_static","N");
-    	}
     	mmap.put("tsysDatas",sysFileDatasService.queryfileID(id));
         return prefix + "/viewfile";
     }
@@ -225,11 +236,12 @@ public class FileController extends BaseController{
      * 此功能为application.yml 下面的isstatic为N 时候需要的
      * 逻辑为：根据数据库文件存放地址，读取图片流放入到<ima src>里面展示
      */
+	@ApiOperation(value = "展示文件跳转页面", notes = "展示文件跳转页面")
     @GetMapping("/viewImg/{id}")
     public void viewIMG(@PathVariable("id") String id,HttpServletRequest request,HttpServletResponse response){
     	TsysDatas datas= sysDatasService.selectByPrimaryKey(id);
     	try {
-			FileUtils.readIMGTohtml(request, response, datas.getFilePath());
+			FileUtils.readIMGTohtml(request, response, datas.getFileAbsolutePath());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
